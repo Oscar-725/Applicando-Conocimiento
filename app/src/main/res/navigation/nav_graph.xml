@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/showLesson">
+
+    <fragment
+        android:id="@+id/addLesson"
+        android:name="com.example.applicandoconocimiento.ui.view.AddLessonFragment"
+        android:label="fragment_add_lesson"
+        tools:layout="@layout/fragment_add_lesson" />
+
+    <fragment
+        android:id="@+id/showLesson"
+        android:name="com.example.applicandoconocimiento.ui.view.ShowLessonFragment"
+        android:label="fragment_show_lesson"
+        tools:layout="@layout/fragment_show_lesson" >
+        <action
+            android:id="@+id/action_showLesson_to_addLesson"
+            app:destination="@id/addLesson" />
+    </fragment>
+</navigation>

@@ -4,44 +4,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowLesson"
+    tools:context=".ui.view.ShowLessonFragment"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_lesson"
-        android:layout_width="275dp"
-        android:layout_height="200dp"
-        android:layout_margin="8dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buscador"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf= "@+id/search_lesson"
-        app:layout_constraintBottom_toBottomOf="@+id/search_lesson"
-        app:layout_constraintTop_toTopOf="@+id/search_lesson"
-        tools:ignore="BottomAppBar"
-        android:src="@drawable/baseline_add_24"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/search_lesson"
+            android:layout_width="275dp"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ivLesson"
+            app:layout_constraintEnd_toStartOf="@id/add_lesson"
+            android:hint="Busqueda"/>
+
+        <ImageButton
+            android:id="@+id/add_lesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/search_lesson"
+            app:layout_constraintBottom_toTopOf="@id/ivLesson"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/baseline_add_24"/>
+
+        <ImageView
+            android:id="@+id/ivLesson"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_lesson"
+            app:layout_constraintBottom_toTopOf="@id/tvComentsLesson"
+            android:layout_marginTop="8dp"
+            tools:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tvComentsLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLesson"
+            tools:text="Comentarios" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--Colocamos un RecyclerView
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/evidence_and_comments"
+        android:id="@+id/rvShowLesson"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_lesson"
-        app:layout_constraintBottom_toTopOf="@id/displacer"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/displacer"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/buscador"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
