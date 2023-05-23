@@ -18,36 +18,45 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_lesson"
-            android:layout_width="275dp"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/ivLesson"
             app:layout_constraintEnd_toStartOf="@id/add_lesson"
-            android:hint="Busqueda"/>
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/autoComplete_textView"
+                android:layout_width="275dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:hint="Busqueda"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <ImageButton
             android:id="@+id/add_lesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/search_lesson"
+            android:src="@drawable/baseline_add_24"
             app:layout_constraintBottom_toTopOf="@id/ivLesson"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/baseline_add_24"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+
+        <com.ortiz.touchview.TouchImageView
             android:id="@+id/ivLesson"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@id/tvComentsLesson"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_lesson"
-            app:layout_constraintBottom_toTopOf="@id/tvComentsLesson"
-            android:layout_marginTop="8dp"
             tools:background="@color/black" />
 
         <TextView

@@ -23,5 +23,9 @@ class LessonRepository (private val lessonDao: LessonDao) {
         return lessonDao.getAll()
     }
 
+    suspend fun deleteLesson(lesson: Lesson) {
+        return lessonDao.delete(lesson)
+    }
+
 
 }

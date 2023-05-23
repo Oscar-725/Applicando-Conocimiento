@@ -15,15 +15,16 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
 import com.example.applicandoconocimiento.data.database.entities.Lesson
 import com.example.applicandoconocimiento.databinding.FragmentAddLessonBinding
-import com.example.applicandoconocimiento.ui.viewmodel.ShowLessonActions
-import com.example.applicandoconocimiento.ui.viewmodel.ShowLessonViewModel
+import com.example.applicandoconocimiento.ui.viewmodel.actions.AddLessonActions
+import com.example.applicandoconocimiento.ui.viewmodel.AddLessonViewModel
 import com.example.module_camera.initCamera
 import java.io.ByteArrayOutputStream
 
 class AddLessonFragment : Fragment() {
 
     private var imagenUri : Uri? = null
-    private lateinit var viewModel:ShowLessonViewModel
+
+    private lateinit var viewModel:AddLessonViewModel
 
 
     private val binding: FragmentAddLessonBinding by lazy {
@@ -38,9 +39,13 @@ class AddLessonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ShowLessonViewModel::class.java)
+
+        viewModel = ViewModelProvider(this).get(AddLessonViewModel::class.java)
+
         bindViewModel()
+
         setupView()
+
         viewModel.getLastData()
     }
 
@@ -48,14 +53,12 @@ class AddLessonFragment : Fragment() {
         viewModel.getActionLiveData().observe(viewLifecycleOwner, ::handleAction)
     }
 
-    private fun handleAction(actions: ShowLessonActions) {
+    private fun handleAction(actions: AddLessonActions) {
         when(actions) {
-            is ShowLessonActions.ShowLastData -> setUpLastData(actions.result)
-            is ShowLessonActions.ShowLesson -> TODO()
-            is ShowLessonActions.ShowTitles -> TODO()
-            is ShowLessonActions.InserLesson -> saveLesson(actions.result)
-            is ShowLessonActions.ErrorLesson -> messageError(actions.result)
-            ShowLessonActions.ReportSuccessInsert -> messageError("Exito al insertar")
+            is AddLessonActions.ErrorLesson -> messageError(actions.result)
+            //is AddLessonActions.InserLesson -> saveLesson(actions.result)
+            is AddLessonActions.ShowLastData -> setUpLastData(actions.result)
+            AddLessonActions.ReportSuccessInsert -> messageError("Exito al insertar")
         }
     }
 
@@ -63,12 +66,6 @@ class AddLessonFragment : Fragment() {
        Toast.makeText(requireContext(),result,Toast.LENGTH_SHORT).show()
     }
 
-    private fun saveLesson(lesson: Lesson?) {
-        lesson?.let {
-
-
-        }
-    }
 
     private fun setUpLastData(model: Lesson?) {
         model?.let {
@@ -110,7 +107,7 @@ class AddLessonFragment : Fragment() {
 
     fun Bitmap.toByteArray():ByteArray{
         ByteArrayOutputStream().apply {
-            compress(Bitmap.CompressFormat.JPEG,100,this)
+            compress(Bitmap.CompressFormat.JPEG,70,this)
             return toByteArray()
         }
     }

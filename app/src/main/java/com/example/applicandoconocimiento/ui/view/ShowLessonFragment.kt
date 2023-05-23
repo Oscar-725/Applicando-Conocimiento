@@ -6,20 +6,22 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.applicandoconocimiento.R
-import com.example.applicandoconocimiento.adapter.LessonAdapter
 import com.example.applicandoconocimiento.data.database.entities.Lesson
 import com.example.applicandoconocimiento.databinding.FragmentShowLessonBinding
-import com.example.applicandoconocimiento.ui.viewmodel.ShowLessonActions
+import com.example.applicandoconocimiento.ui.viewmodel.actions.ShowLessonActions
 import com.example.applicandoconocimiento.ui.viewmodel.ShowLessonViewModel
+import kotlin.math.max
+import kotlin.math.min
 
 class ShowLessonFragment : Fragment() {
 
@@ -37,7 +39,9 @@ class ShowLessonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         lessonViewModel = ViewModelProvider(this)[ShowLessonViewModel::class.java]
+
         bindActionViewModel()
 
         binding.addLesson.setOnClickListener {
@@ -69,8 +73,6 @@ class ShowLessonFragment : Fragment() {
             is ShowLessonActions.ShowLesson -> chargeLesson(actions.result)
             is ShowLessonActions.ShowTitles -> setTitleList(actions.result)
             is ShowLessonActions.ShowLastData -> Log.e("ERROR","ERROR")
-            is ShowLessonActions.InserLesson -> TODO()
-            is ShowLessonActions.ErrorLesson -> TODO()
             else -> {}
         }
 
@@ -79,15 +81,16 @@ class ShowLessonFragment : Fragment() {
     private fun setTitleList(list: List<String>) {
 
         val adapter= ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item,list.toMutableList())
-        binding.searchLesson.setAdapter(adapter)
+        binding.autoCompleteTextView.setAdapter(adapter)
 
-        binding.searchLesson.setOnItemClickListener {adapterView, view, i ,l ->
+        binding.autoCompleteTextView.setOnItemClickListener {adapterView, view, i ,l ->
             // view model - querty para setear pantalla
             val title = adapterView.getItemAtPosition(i) as String
             lessonViewModel.showLesson(title)
 
             Toast.makeText(requireContext(),title,Toast.LENGTH_SHORT).show()
         }
+
 
     }
 
@@ -101,5 +104,6 @@ class ShowLessonFragment : Fragment() {
             Bitmap.createScaledBitmap(bmp,imagen.width,imagen.height,false)
         )
     }
+
 }
 
