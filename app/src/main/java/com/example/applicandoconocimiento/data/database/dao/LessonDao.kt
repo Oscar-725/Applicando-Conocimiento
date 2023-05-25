@@ -16,7 +16,7 @@ interface LessonDao {
     @Query ("SELECT * FROM Lesson")
     suspend fun getAll () : List<Lesson>
 
-    @Query ("SELECT titulo FROM Lesson")
+    @Query ("SELECT titulo FROM Lesson ORDER BY titulo ASC")
     suspend fun getTitulos () : List<String>?
 
     @Insert

@@ -20,32 +20,49 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_lesson"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/ivLesson"
-            app:layout_constraintEnd_toStartOf="@id/add_lesson"
+            app:layout_constraintBottom_toTopOf="@id/barButtons"
+            app:layout_constraintEnd_toEndOf="parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/autoComplete_textView"
-                android:layout_width="275dp"
-                android:layout_height="80dp"
-                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="Busqueda"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <ImageButton
-            android:id="@+id/add_lesson"
+        <LinearLayout
+            android:id="@+id/barButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_add_24"
-            app:layout_constraintBottom_toTopOf="@id/ivLesson"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/search_lesson"
+            app:layout_constraintBottom_toTopOf="@id/ivLesson"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/add_lesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_add_24"
+                android:layout_marginHorizontal="50dp"/>
+
+            <ImageButton
+                android:id="@+id/delete_lesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_forever"
+                android:layout_marginHorizontal="50dp"/>
+
+        </LinearLayout>
+
+
 
 
         <com.ortiz.touchview.TouchImageView
@@ -56,7 +73,7 @@
             app:layout_constraintBottom_toTopOf="@id/tvComentsLesson"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_lesson"
+            app:layout_constraintTop_toBottomOf="@id/barButtons"
             tools:background="@color/black" />
 
         <TextView

@@ -26,7 +26,6 @@ class AddLessonFragment : Fragment() {
 
     private lateinit var viewModel:AddLessonViewModel
 
-
     private val binding: FragmentAddLessonBinding by lazy {
         FragmentAddLessonBinding.inflate(layoutInflater)
     }
@@ -56,7 +55,6 @@ class AddLessonFragment : Fragment() {
     private fun handleAction(actions: AddLessonActions) {
         when(actions) {
             is AddLessonActions.ErrorLesson -> messageError(actions.result)
-            //is AddLessonActions.InserLesson -> saveLesson(actions.result)
             is AddLessonActions.ShowLastData -> setUpLastData(actions.result)
             AddLessonActions.ReportSuccessInsert -> messageError("Exito al insertar")
         }
